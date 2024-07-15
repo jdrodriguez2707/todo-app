@@ -23,35 +23,87 @@
     <main class="main-container">
       <section class="todo-list-section">
         <h1 class="todo-list-section__title">TODO List</h1>
-        <img
-          class="todo-list-section__icon"
-          src="./assets/icons/plus.svg"
-          alt="Plus icon"
-        />
-        <form>
-          <input
-            class="todo-list-section__input"
-            type="text"
-            placeholder="Add a new task"
+        <div class="todo-list-section__add-new-task">
+          <img
+            class="todo-list-section__icon"
+            src="./assets/icons/plus.svg"
+            alt="Plus icon"
           />
-        </form>
+          <form>
+            <input
+              class="todo-list-section__input"
+              type="text"
+              placeholder="Add a new task"
+            />
+          </form>
+        </div>
         <div class="task-container">
-          <img
-            class="task-container__icon"
-            src="./assets/icons/radio-button-unchecked.svg"
-            alt="Radio button unchecked icon"
-          />
-          <p class="task-container__task-description">Practice algorithms</p>
-          <img
-            class="task-container__icon"
-            src="./assets/icons/trash.svg"
-            alt="Trash icon"
-          />
-          <img
-            class="task-container__icon"
-            src="./assets/icons/pencil-edit.svg"
-            alt="Pencil edit icon"
-          />
+          <div class="task-container__group">
+            <img
+              class="task-container__icon"
+              src="./assets/icons/radio-button-unchecked.svg"
+              alt="Radio button unchecked icon"
+            />
+            <p class="task-container__task-description">Start new project 🎉</p>
+          </div>
+          <div class="task-container__group">
+            <img
+              class="task-container__icon"
+              src="./assets/icons/trash.svg"
+              alt="Trash icon"
+            />
+            <img
+              class="task-container__icon"
+              src="./assets/icons/pencil-edit.svg"
+              alt="Pencil edit icon"
+            />
+          </div>
+        </div>
+        <div class="task-container">
+          <div class="task-container__group">
+            <img
+              class="task-container__icon"
+              src="./assets/icons/radio-button-unchecked.svg"
+              alt="Radio button unchecked icon"
+            />
+            <p class="task-container__task-description">
+              Practice algorithms 👨🏻‍💻
+            </p>
+          </div>
+          <div class="task-container__group">
+            <img
+              class="task-container__icon"
+              src="./assets/icons/trash.svg"
+              alt="Trash icon"
+            />
+            <img
+              class="task-container__icon"
+              src="./assets/icons/pencil-edit.svg"
+              alt="Pencil edit icon"
+            />
+          </div>
+        </div>
+        <div class="task-container">
+          <div class="task-container__group">
+            <img
+              class="task-container__icon"
+              src="./assets/icons/radio-button-unchecked.svg"
+              alt="Radio button unchecked icon"
+            />
+            <p class="task-container__task-description">Do exercise 💪🏻</p>
+          </div>
+          <div class="task-container__group">
+            <img
+              class="task-container__icon"
+              src="./assets/icons/trash.svg"
+              alt="Trash icon"
+            />
+            <img
+              class="task-container__icon"
+              src="./assets/icons/pencil-edit.svg"
+              alt="Pencil edit icon"
+            />
+          </div>
         </div>
       </section>
       <section class="completed-tasks-section">
@@ -60,18 +112,58 @@
           src="./assets/icons/arrow-right.svg"
           alt="Arrow right icon"
         />
-        <h2>Completed tasks</h2>
+        <h2 class="completed-tasks-section__title">Completed tasks</h2>
         <div class="task-container">
+          <div class="task-container__group">
+            <img
+              class="task-container__icon"
+              src="./assets/icons/check.svg"
+              alt="Check icon"
+            />
+            <p
+              class="task-container__task-description task-container__task-description--line-through"
+            >
+              Start new project 🎉
+            </p>
+          </div>
           <img
             class="task-container__icon"
-            src="./assets/icons/check.svg"
-            alt="Check icon"
+            src="./assets/icons/trash.svg"
+            alt="Trash icon"
           />
-          <p
-            class="task-container__task-description task-container__task-description--strikethrough"
-          >
-            Practice algorithms
-          </p>
+        </div>
+        <div class="task-container">
+          <div class="task-container__group">
+            <img
+              class="task-container__icon"
+              src="./assets/icons/check.svg"
+              alt="Check icon"
+            />
+            <p
+              class="task-container__task-description task-container__task-description--line-through"
+            >
+              Practice algorithms 👨🏻‍💻
+            </p>
+          </div>
+          <img
+            class="task-container__icon"
+            src="./assets/icons/trash.svg"
+            alt="Trash icon"
+          />
+        </div>
+        <div class="task-container">
+          <div class="task-container__group">
+            <img
+              class="task-container__icon"
+              src="./assets/icons/check.svg"
+              alt="Check icon"
+            />
+            <p
+              class="task-container__task-description task-container__task-description--line-through"
+            >
+              Do exercise 💪🏻
+            </p>
+          </div>
           <img
             class="task-container__icon"
             src="./assets/icons/trash.svg"
@@ -79,6 +171,20 @@
           />
         </div>
       </section>
+      <!-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const input = document.querySelector(".todo-list-section__input");
+          const icon = document.querySelector(".todo-list-section__icon");
+
+          input.addEventListener("focus", function () {
+            icon.classList.add("todo-list-section__icon--rotate");
+          });
+
+          input.addEventListener("blur", function () {
+            icon.classList.remove("todo-list-section__icon--rotate");
+          });
+        });
+      </script> -->
     </main>
   </body>
 </html>

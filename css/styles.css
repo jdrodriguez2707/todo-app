@@ -11,4 +11,91 @@
   /* Icons */
   --primary-icon-size: 4rem;
   --secondary-icon-size: 2.4rem;
+
+  /* Background colors */
+  --primary-background-color: #f8f9fa;
+}
+
+.main-container {
+  margin: 40px auto;
+  width: 90%;
+  max-width: 900px;
+}
+
+.todo-list-section__title {
+  text-align: center;
+  font-size: var(--large-font-size);
+  font-family: var(--primary-font-family);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.todo-list-section__add-new-task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.todo-list-section__icon {
+  width: var(--primary-icon-size);
+  transition: transform 0.5s ease;
+}
+
+.todo-list-section__icon--rotate {
+  transform: rotate(90deg);
+}
+
+.task-container__icon {
+  width: var(--secondary-icon-size);
+}
+
+.todo-list-section__input {
+  border: none;
+  font-size: var(--medium-font-size);
+  font-family: var(--secondary-font-family);
+  font-weight: 300;
+  font-style: normal;
+  width: 100%;
+  color: var(--color-secondary);
+}
+
+.todo-list-section__input:focus {
+  outline: none;
+}
+
+.task-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 20px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--primary-background-color);
+}
+
+.task-container__group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-container__task-description,
+.completed-tasks-section__title {
+  font-size: var(--small-font-size);
+  color: var(--color-primary);
+  font-family: var(--secondary-font-family);
+  font-weight: 300;
+  font-style: normal;
+}
+
+.completed-tasks-section__arrow-right-icon,
+.completed-tasks-section__title {
+  color: var(--color-secondary);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.task-container__task-description--line-through {
+  text-decoration: line-through;
 }
