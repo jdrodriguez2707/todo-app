@@ -20,6 +20,65 @@
     <title>TODO List</title>
   </head>
   <body>
-    <h1>TODO List</h1>
+    <main class="main-container">
+      <section class="todo-list-section">
+        <h1 class="todo-list-section__title">TODO List</h1>
+        <img
+          class="todo-list-section__icon"
+          src="./assets/icons/plus.svg"
+          alt="Plus icon"
+        />
+        <form>
+          <input
+            class="todo-list-section__input"
+            type="text"
+            placeholder="Add a new task"
+          />
+        </form>
+        <div class="task-container">
+          <img
+            class="task-container__icon"
+            src="./assets/icons/radio-button-unchecked.svg"
+            alt="Radio button unchecked icon"
+          />
+          <p class="task-container__task-description">Practice algorithms</p>
+          <img
+            class="task-container__icon"
+            src="./assets/icons/trash.svg"
+            alt="Trash icon"
+          />
+          <img
+            class="task-container__icon"
+            src="./assets/icons/pencil-edit.svg"
+            alt="Pencil edit icon"
+          />
+        </div>
+      </section>
+      <section class="completed-tasks-section">
+        <img
+          class="completed-tasks-section__arrow-right-icon"
+          src="./assets/icons/arrow-right.svg"
+          alt="Arrow right icon"
+        />
+        <h2>Completed tasks</h2>
+        <div class="task-container">
+          <img
+            class="task-container__icon"
+            src="./assets/icons/check.svg"
+            alt="Check icon"
+          />
+          <p
+            class="task-container__task-description task-container__task-description--strikethrough"
+          >
+            Practice algorithms
+          </p>
+          <img
+            class="task-container__icon"
+            src="./assets/icons/trash.svg"
+            alt="Trash icon"
+          />
+        </div>
+      </section>
+    </main>
   </body>
 </html>
