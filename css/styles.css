@@ -1,0 +1,14 @@
+:root {
+  /* Fonts */
+  --color-primary: #000;
+  --color-secondary: #808080;
+  --large-font-size: 4rem;
+  --medium-font-size: 3rem;
+  --small-font-size: 2rem;
+  --primary-font-family: "Ubuntu", sans-serif;
+  --secondary-font-family: "Rubik", sans-serif;
+
+  /* Icons */
+  --primary-icon-size: 4rem;
+  --secondary-icon-size: 2.4rem;
+}
