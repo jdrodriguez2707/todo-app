@@ -67,7 +67,7 @@
 
 .tasks-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 40px;
   margin: 40px 0;
 }
@@ -90,7 +90,7 @@
 }
 
 .task-container__task-description,
-.completed-tasks-section__title {
+.completed-tasks-section__details {
   font-size: var(--small-font-size);
   color: var(--color-primary);
   font-family: var(--secondary-font-family);
@@ -109,7 +109,7 @@
 }
 
 .completed-tasks-section__arrow-right-icon,
-.completed-tasks-section__title {
+.completed-tasks-section__details {
   color: var(--color-secondary);
   display: inline-block;
   vertical-align: middle;
@@ -117,6 +117,10 @@
 
 .task-container__task-description--line-through {
   text-decoration: line-through;
+}
+
+.completed-tasks-section__details {
+  width: 100% ;
 }
 
 .inactive {

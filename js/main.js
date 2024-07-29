@@ -51,9 +51,13 @@ function displayTask(taskDescription) {
   taskGroup.classList.add("task-container__group");
 
   const radioIcon = document.createElement("img");
-  radioIcon.src = "./assets/icons/radio-button-unchecked.svg";
+  radioIcon.src = "../assets/icons/radio-button-unchecked.svg";
   radioIcon.alt = "Radio button unchecked icon";
   radioIcon.classList.add("task-container__icon");
+  radioIcon.addEventListener("click", () => {
+    taskContainer.removeChild(actionGroup);
+    markTaskAsCompleted(radioIcon, taskContainer, taskDescriptionParagraph);
+  });
 
   const taskDescriptionParagraph = document.createElement("p");
   taskDescriptionParagraph.classList.add("task-container__task-description");
@@ -66,7 +70,7 @@ function displayTask(taskDescription) {
 
   const trashIcon = document.createElement("img");
   trashIcon.setAttribute("id", "delete-task-icon");
-  trashIcon.src = "./assets/icons/trash.svg";
+  trashIcon.src = "../assets/icons/trash.svg";
   trashIcon.alt = "Trash icon";
   trashIcon.classList.add("task-container__icon");
   trashIcon.addEventListener("click", () => {
@@ -74,7 +78,7 @@ function displayTask(taskDescription) {
   });
 
   const editIcon = document.createElement("img");
-  editIcon.src = "./assets/icons/pencil-edit.svg";
+  editIcon.src = "../assets/icons/pencil-edit.svg";
   editIcon.alt = "Pencil edit icon";
   editIcon.classList.add("task-container__icon");
   editIcon.addEventListener("click", () => {
@@ -126,4 +130,15 @@ function saveTaskEdit(form, input, taskDescriptionParagraph) {
     taskDescriptionParagraph.textContent = editedTask;
   }
   form.replaceWith(taskDescriptionParagraph);
+}
+
+function markTaskAsCompleted(radioIcon, taskContainer, taskDescriptionParagraph) {
+  radioIcon.src = "../assets/icons/check.svg";
+  taskDescriptionParagraph.classList.add("task-container__task-description--line-through");
+
+  const completedTasksSection = document.querySelector("#completed-tasks-section");
+  completedTasksSection.appendChild(taskContainer);
+
+  const completedTaskDetails = document.querySelector("#completed-tasks-details");
+  completedTaskDetails.open = true;
 }

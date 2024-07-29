@@ -40,16 +40,13 @@
             />
           </form>
         </div>
-        <ul id="todo-list-section" class="tasks-container"></ul>
+        <div id="todo-list-section" class="tasks-container"></div>
       </section>
       <section class="completed-tasks-section">
-        <img
-          class="completed-tasks-section__arrow-right-icon"
-          src="./assets/icons/arrow-right.svg"
-          alt="Arrow right icon"
-        />
-        <h2 class="completed-tasks-section__title">Completed tasks</h2>
-        <ul id="completed-task-section" class="tasks-container"></ul>
+        <details id="completed-tasks-details" class="completed-tasks-section__details">
+          <summary>Completed tasks</summary>
+          <div id="completed-tasks-section" class="tasks-container"></div>
+        </details>
       </section>
     </main>
     <script src="./js/main.js"></script>
