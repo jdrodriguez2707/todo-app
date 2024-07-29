@@ -48,7 +48,10 @@ function displayTask(taskDescription) {
   taskContainer.classList.add("task-container");
 
   const taskGroup = document.createElement("div");
-  taskGroup.classList.add("task-container__group");
+  taskGroup.classList.add(
+    "task-container__group",
+    "task-container__group--left"
+  );
 
   const radioIcon = document.createElement("img");
   radioIcon.src = "./assets/icons/radio-button-unchecked.svg";
@@ -107,6 +110,7 @@ function removeTask(taskDescription, taskContainer) {
 function editTask(taskDescriptionParagraph) {
   const currentText = taskDescriptionParagraph.textContent;
   const form = document.createElement("form");
+  form.classList.add("task-container__edit-form");
   const editInput = document.createElement("input");
   editInput.type = "text";
   editInput.value = currentText;
@@ -132,13 +136,23 @@ function saveTaskEdit(form, input, taskDescriptionParagraph) {
   form.replaceWith(taskDescriptionParagraph);
 }
 
-function markTaskAsCompleted(radioIcon, taskContainer, taskDescriptionParagraph) {
+function markTaskAsCompleted(
+  radioIcon,
+  taskContainer,
+  taskDescriptionParagraph
+) {
   radioIcon.src = "./assets/icons/check.svg";
-  taskDescriptionParagraph.classList.add("task-container__task-description--line-through");
+  taskDescriptionParagraph.classList.add(
+    "task-container__task-description--line-through"
+  );
 
-  const completedTasksSection = document.querySelector("#completed-tasks-section");
+  const completedTasksSection = document.querySelector(
+    "#completed-tasks-section"
+  );
   completedTasksSection.appendChild(taskContainer);
 
-  const completedTaskDetails = document.querySelector("#completed-tasks-details");
+  const completedTaskDetails = document.querySelector(
+    "#completed-tasks-details"
+  );
   completedTaskDetails.open = true;
 }
