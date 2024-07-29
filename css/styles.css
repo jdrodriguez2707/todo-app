@@ -64,11 +64,19 @@
   outline: none;
 }
 
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 40px 20px;
+}
+
 .task-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 20px;
+  flex-wrap: wrap;
+  gap: 10px;
   padding: 10px;
   border-radius: 10px;
   background-color: var(--primary-background-color);
