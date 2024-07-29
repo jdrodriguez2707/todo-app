@@ -38,8 +38,9 @@
 }
 
 .todo-list-section__icon {
-  width: var(--primary-icon-size);
   transition: transform 0.5s ease;
+  cursor: pointer;
+  width: var(--primary-icon-size);
 }
 
 .todo-list-section__icon--rotate {
@@ -53,6 +54,7 @@
 
 .task-container__icon {
   width: var(--secondary-icon-size);
+  cursor: pointer;
 }
 
 .todo-list-section__input {
@@ -131,8 +133,14 @@
 
 .completed-tasks-section__details {
   width: 100%;
+  cursor: pointer;
+  user-select: none;
 }
 
 .inactive {
   display: none;
+}
+
+.normal-cursor {
+  cursor: default;
 }

@@ -142,6 +142,8 @@ function markTaskAsCompleted(
   taskDescriptionParagraph
 ) {
   radioIcon.src = "./assets/icons/check.svg";
+  radioIcon.classList.add("normal-cursor");
+  radioIcon.alt = "Check icon";
   taskDescriptionParagraph.classList.add(
     "task-container__task-description--line-through"
   );
@@ -149,6 +151,7 @@ function markTaskAsCompleted(
   const completedTasksSection = document.querySelector(
     "#completed-tasks-section"
   );
+  taskContainer.classList.add("normal-cursor");
   completedTasksSection.appendChild(taskContainer);
 
   const completedTaskDetails = document.querySelector(
