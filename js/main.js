@@ -7,18 +7,18 @@ const addTaskIcon = document.querySelector("#add-task-icon");
 const addTaskInput = document.querySelector("#add-task-input");
 
 // Set listeners to add animation to the add task icon
-addTaskInput.addEventListener("focus", function () {
+addTaskInput.addEventListener("focus", () => {
   addTaskIcon.classList.add("todo-list-section__icon--rotate");
 });
 
-addTaskInput.addEventListener("blur", function () {
+addTaskInput.addEventListener("blur", () => {
   addTaskIcon.classList.remove("todo-list-section__icon--rotate");
 });
 
 // Set listeners to add a new task
 addTaskIcon.addEventListener("click", addNewTask);
 
-addTaskInput.addEventListener("keypress", function (event) {
+addTaskInput.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
     addNewTask();
@@ -69,7 +69,7 @@ function displayTask(taskDescription) {
   trashIcon.src = "./assets/icons/trash.svg";
   trashIcon.alt = "Trash icon";
   trashIcon.classList.add("task-container__icon");
-  trashIcon.addEventListener("click", (event) => {
+  trashIcon.addEventListener("click", () => {
     removeTask(taskDescription, taskContainer);
   });
 
@@ -77,6 +77,9 @@ function displayTask(taskDescription) {
   editIcon.src = "./assets/icons/pencil-edit.svg";
   editIcon.alt = "Pencil edit icon";
   editIcon.classList.add("task-container__icon");
+  editIcon.addEventListener("click", () => {
+    editTask(taskDescriptionParagraph);
+  });
 
   actionGroup.append(trashIcon, editIcon);
 
@@ -95,4 +98,32 @@ function removeTask(taskDescription, taskContainer) {
       tasks.splice(index, 1);
     }
   });
+}
+
+function editTask(taskDescriptionParagraph) {
+  const currentText = taskDescriptionParagraph.textContent;
+  const form = document.createElement("form");
+  const editInput = document.createElement("input");
+  editInput.type = "text";
+  editInput.value = currentText;
+  editInput.classList.add("task-container__edit-input");
+  form.append(editInput);
+
+  taskDescriptionParagraph.replaceWith(form);
+  editInput.focus();
+
+  editInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      saveTaskEdit(form, editInput, taskDescriptionParagraph);
+    }
+  });
+}
+
+function saveTaskEdit(form, input, taskDescriptionParagraph) {
+  const editedTask = input.value.trim();
+  if (editedTask) {
+    taskDescriptionParagraph.textContent = editedTask;
+  }
+  form.replaceWith(taskDescriptionParagraph);
 }
