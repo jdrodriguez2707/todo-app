@@ -107,3 +107,7 @@
 .task-container__task-description--line-through {
   text-decoration: line-through;
 }
+
+.inactive {
+  display: none;
+}

@@ -22,6 +22,7 @@ addTaskInput.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
     addNewTask();
+    addTaskInput.blur(); // Remove focus the input
   }
 });
 
@@ -68,6 +69,9 @@ function displayTask(taskDescription) {
   trashIcon.src = "./assets/icons/trash.svg";
   trashIcon.alt = "Trash icon";
   trashIcon.classList.add("task-container__icon");
+  trashIcon.addEventListener("click", (event) => {
+    removeTask(taskDescription, taskContainer);
+  });
 
   const editIcon = document.createElement("img");
   editIcon.src = "./assets/icons/pencil-edit.svg";
@@ -79,4 +83,16 @@ function displayTask(taskDescription) {
   taskContainer.append(taskGroup, actionGroup);
 
   todoListSection.appendChild(taskContainer);
+}
+
+function removeTask(taskDescription, taskContainer) {
+  // Remove task from DOM
+  taskContainer.classList.add("inactive");
+
+  // Remove task from array
+  tasks.find((task, index) => {
+    if (task === taskDescription) {
+      tasks.splice(index, 1);
+    }
+  });
 }
