@@ -1,10 +1,19 @@
 "use strict";
 
-const tasks = [];
+const tasks = [
+  "You can edit or delete a task by clicking on the icons. ➡️",
+  "To add the new task, click on the ➕ icon or press 'Enter'. 🚀",
+  "To add a new task, just click on the box above and type your new task. 📝",
+  "Welcome! 🎉",
+];
 
 // Get DOM elements
 const addTaskIcon = document.querySelector("#add-task-icon");
 const addTaskInput = document.querySelector("#add-task-input");
+const todoListSection = document.querySelector("#todo-list-section");
+
+// Display default tasks
+displayDefaultTasks();
 
 // Set listeners to add animation to the add task icon
 addTaskInput.addEventListener("focus", () => {
@@ -26,24 +35,25 @@ addTaskInput.addEventListener("keypress", (event) => {
   }
 });
 
+function displayDefaultTasks() {
+  tasks.forEach((taskDescription) => {
+    displayTask(taskDescription);
+  });
+}
+
 function addNewTask() {
   const taskDescription = addTaskInput.value.trim();
+  addTaskInput.value = ""; // Clear the input
 
   if (taskDescription) {
     tasks.push(taskDescription);
     displayTask(taskDescription);
   } else {
-    addTaskInput.value = "";
-    alert("Please enter a task!");
+    alert("⚠️ Please enter a description for the task.");
   }
 }
 
 function displayTask(taskDescription) {
-  // Clear the task input
-  addTaskInput.value = "";
-
-  const todoListSection = document.querySelector("#todo-list-section");
-
   const taskContainer = document.createElement("div");
   taskContainer.classList.add("task-container");
 
@@ -95,9 +105,34 @@ function displayTask(taskDescription) {
   todoListSection.appendChild(taskContainer);
 }
 
+function markTaskAsCompleted(
+  radioIcon,
+  taskContainer,
+  taskDescriptionParagraph
+) {
+  radioIcon.src = "./assets/icons/check.svg";
+  radioIcon.classList.add("normal-cursor");
+  radioIcon.alt = "Check icon";
+  taskDescriptionParagraph.classList.add(
+    "task-container__task-description--line-through"
+  );
+
+  const completedTasksSection = document.querySelector(
+    "#completed-tasks-section"
+  );
+  completedTasksSection.appendChild(taskContainer);
+
+  /*
+  const completedTaskDetails = document.querySelector(
+    "#completed-tasks-details"
+  );
+  completedTaskDetails.open = true;
+  */
+}
+
 function removeTask(taskDescription, taskContainer) {
   // Remove task from DOM
-  taskContainer.classList.add("inactive");
+  todoListSection.removeChild(taskContainer);
 
   // Remove task from array
   tasks.find((task, index) => {
@@ -134,28 +169,4 @@ function saveTaskEdit(form, input, taskDescriptionParagraph) {
     taskDescriptionParagraph.textContent = editedTask;
   }
   form.replaceWith(taskDescriptionParagraph);
-}
-
-function markTaskAsCompleted(
-  radioIcon,
-  taskContainer,
-  taskDescriptionParagraph
-) {
-  radioIcon.src = "./assets/icons/check.svg";
-  radioIcon.classList.add("normal-cursor");
-  radioIcon.alt = "Check icon";
-  taskDescriptionParagraph.classList.add(
-    "task-container__task-description--line-through"
-  );
-
-  const completedTasksSection = document.querySelector(
-    "#completed-tasks-section"
-  );
-  taskContainer.classList.add("normal-cursor");
-  completedTasksSection.appendChild(taskContainer);
-
-  const completedTaskDetails = document.querySelector(
-    "#completed-tasks-details"
-  );
-  completedTaskDetails.open = true;
 }
