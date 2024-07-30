@@ -16,8 +16,13 @@
   --primary-background-color: #f8f9fa;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+}
+
 .main-container {
-  margin: 40px auto;
+  margin: 40px 0;
   width: 90%;
   max-width: 900px;
 }
@@ -133,8 +138,12 @@
 
 .completed-tasks-section__details {
   width: 100%;
-  cursor: pointer;
   user-select: none;
+}
+
+.completed-tasks-section__summary {
+  cursor: pointer;
+  max-width: 180px;
 }
 
 .inactive {
