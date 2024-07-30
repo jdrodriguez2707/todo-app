@@ -68,8 +68,13 @@ function displayTask(taskDescription) {
   radioIcon.alt = "Radio button unchecked icon";
   radioIcon.classList.add("task-container__icon");
   radioIcon.addEventListener("click", () => {
+    markTaskAsCompleted(
+      radioIcon,
+      taskContainer,
+      taskDescriptionParagraph,
+      actionGroup
+    );
     taskContainer.removeChild(actionGroup);
-    markTaskAsCompleted(radioIcon, taskContainer, taskDescriptionParagraph);
   });
 
   const taskDescriptionParagraph = document.createElement("p");
@@ -108,9 +113,19 @@ function displayTask(taskDescription) {
 function markTaskAsCompleted(
   radioIcon,
   taskContainer,
-  taskDescriptionParagraph
+  taskDescriptionParagraph,
+  actionGroup
 ) {
-  displayAlertMessage("🎉 Task completed!");
+  // Create a reference to the next sibling of current the task container to move it to the previous position if the undo option is clicked
+  const nextSibling = taskContainer.nextElementSibling;
+  displayAlertMessage(
+    "🎉 Task completed!",
+    nextSibling,
+    radioIcon,
+    taskContainer,
+    taskDescriptionParagraph,
+    actionGroup
+  );
 
   radioIcon.src = "./assets/icons/check.svg";
   radioIcon.classList.add("normal-cursor");
@@ -175,13 +190,22 @@ function saveTaskEdit(form, input, taskDescriptionParagraph) {
   form.replaceWith(taskDescriptionParagraph);
 }
 
-function displayAlertMessage(message) {
-  // Clear previous alert messages
+// Display alert message with or without undo option
+function displayAlertMessage(
+  message,
+  nextElementSibling,
+  radioIcon,
+  taskContainer,
+  taskDescriptionParagraph,
+  actionGroup
+) {
+  // Remove previous alert boxes
   const previousAlerts = document.querySelectorAll(".box-alert");
   previousAlerts.forEach((alert) => {
     alert.remove();
   });
 
+  // Create alert box for HTML
   const alertBox = document.createElement("div");
   alertBox.classList.add("box-alert");
 
@@ -198,11 +222,20 @@ function displayAlertMessage(message) {
     undoOption.textContent = "Undo";
     undoOption.addEventListener("click", () => {
       alertBox.remove();
+      radioIcon.src = "./assets/icons/radio-button-unchecked.svg";
+      radioIcon.classList.remove("normal-cursor");
+      taskDescriptionParagraph.classList.remove(
+        "task-container__task-description--line-through"
+      );
+      radioIcon.alt = "Radio button unchecked icon";
+      taskContainer.appendChild(actionGroup);
+      todoListSection.insertBefore(taskContainer, nextElementSibling);
     });
+
     alertBox.appendChild(undoOption);
   }
 
   setTimeout(() => {
     alertBox.remove();
-  }, 4000);
+  }, 5000);
 }
