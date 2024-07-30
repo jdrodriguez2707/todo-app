@@ -49,7 +49,7 @@ function addNewTask() {
     tasks.push(taskDescription);
     displayTask(taskDescription);
   } else {
-    alert("⚠️ Please enter a description for the task.");
+    displayAlertMessage("⚠️ Please enter a description for the task.");
   }
 }
 
@@ -110,6 +110,8 @@ function markTaskAsCompleted(
   taskContainer,
   taskDescriptionParagraph
 ) {
+  displayAlertMessage("🎉 Task completed!");
+
   radioIcon.src = "./assets/icons/check.svg";
   radioIcon.classList.add("normal-cursor");
   radioIcon.alt = "Check icon";
@@ -131,6 +133,8 @@ function markTaskAsCompleted(
 }
 
 function removeTask(taskDescription, taskContainer) {
+  displayAlertMessage("🗑️ Task removed");
+
   // Remove task from DOM
   todoListSection.removeChild(taskContainer);
 
@@ -169,4 +173,36 @@ function saveTaskEdit(form, input, taskDescriptionParagraph) {
     taskDescriptionParagraph.textContent = editedTask;
   }
   form.replaceWith(taskDescriptionParagraph);
+}
+
+function displayAlertMessage(message) {
+  // Clear previous alert messages
+  const previousAlerts = document.querySelectorAll(".box-alert");
+  previousAlerts.forEach((alert) => {
+    alert.remove();
+  });
+
+  const alertBox = document.createElement("div");
+  alertBox.classList.add("box-alert");
+
+  const alertMessage = document.createElement("p");
+  alertMessage.classList.add("box-alert__message");
+  alertMessage.textContent = message;
+
+  alertBox.appendChild(alertMessage);
+  document.body.appendChild(alertBox);
+
+  if (message === "🗑️ Task removed" || message === "🎉 Task completed!") {
+    const undoOption = document.createElement("p");
+    undoOption.classList.add("box-alert__message", "box-alert__message--undo");
+    undoOption.textContent = "Undo";
+    undoOption.addEventListener("click", () => {
+      alertBox.remove();
+    });
+    alertBox.appendChild(undoOption);
+  }
+
+  setTimeout(() => {
+    alertBox.remove();
+  }, 4000);
 }
