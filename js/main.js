@@ -67,7 +67,14 @@ function displayTask(taskDescription) {
   radioIcon.src = "./assets/icons/radio-button-unchecked.svg";
   radioIcon.alt = "Radio button unchecked icon";
   radioIcon.classList.add("task-container__icon");
+  const addCheckIcon = () => (radioIcon.src = "./assets/icons/check.svg");
+  const addRadioIcon = () =>
+    (radioIcon.src = "./assets/icons/radio-button-unchecked.svg");
+  radioIcon.addEventListener("mouseover", addCheckIcon);
+  radioIcon.addEventListener("mouseout", addRadioIcon);
   radioIcon.addEventListener("click", () => {
+    radioIcon.removeEventListener("mouseover", addCheckIcon);
+    radioIcon.removeEventListener("mouseout", addRadioIcon);
     markTaskAsCompleted(
       radioIcon,
       taskContainer,
@@ -245,6 +252,7 @@ function displayAlertMessage(
     alertBox.remove();
     radioIcon.src = "./assets/icons/radio-button-unchecked.svg";
     radioIcon.classList.remove("normal-cursor");
+    radioIcon.classList.add("task-container__icon--hover");
     taskDescriptionParagraph.classList.remove(
       "task-container__task-description--line-through"
     );

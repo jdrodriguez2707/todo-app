@@ -63,6 +63,10 @@ body {
   cursor: pointer;
 }
 
+.task-container__icon--hover:hover {
+  background-image: url("../assets/icons/check.svg");
+}
+
 .todo-list-section__input {
   border: none;
   font-size: var(--medium-font-size);
