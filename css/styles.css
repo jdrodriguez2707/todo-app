@@ -5,6 +5,7 @@
   --large-font-size: 4rem;
   --medium-font-size: 3rem;
   --small-font-size: 2rem;
+  --very-small-font-size: 1.5rem;
   --primary-font-family: "Ubuntu", sans-serif;
   --secondary-font-family: "Rubik", sans-serif;
 
@@ -152,4 +153,29 @@ body {
 
 .normal-cursor {
   cursor: default;
+}
+
+.box-alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  padding: 16px;
+  border-radius: 10px;
+  max-width: 260px;
+  background-color: var(--color-primary);
+}
+
+.box-alert__message {
+  font-family: var(--secondary-font-family);
+  font-size: var(--very-small-font-size);
+  font-style: normal;
+  color: var(--primary-background-color);
+}
+
+.box-alert__message--undo {
+  font-weight: bold;
+  cursor: pointer;
 }
