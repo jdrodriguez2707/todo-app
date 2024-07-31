@@ -67,22 +67,27 @@ function displayTask(taskDescription) {
   radioIcon.src = "./assets/icons/radio-button-unchecked.svg";
   radioIcon.alt = "Radio button unchecked icon";
   radioIcon.classList.add("task-container__icon");
+
   const addCheckIcon = () => (radioIcon.src = "./assets/icons/check.svg");
   const addRadioIcon = () =>
     (radioIcon.src = "./assets/icons/radio-button-unchecked.svg");
-  radioIcon.addEventListener("mouseover", addCheckIcon);
-  radioIcon.addEventListener("mouseout", addRadioIcon);
-  radioIcon.addEventListener("click", () => {
+
+  const clickListener = () => {
     radioIcon.removeEventListener("mouseover", addCheckIcon);
     radioIcon.removeEventListener("mouseout", addRadioIcon);
     markTaskAsCompleted(
       radioIcon,
       taskContainer,
       taskDescriptionParagraph,
-      actionGroup
+      actionGroup,
+      clickListener
     );
     taskContainer.removeChild(actionGroup);
-  });
+  };
+
+  radioIcon.addEventListener("mouseover", addCheckIcon);
+  radioIcon.addEventListener("mouseout", addRadioIcon);
+  radioIcon.addEventListener("click", clickListener);
 
   const taskDescriptionParagraph = document.createElement("p");
   taskDescriptionParagraph.classList.add("task-container__task-description");
@@ -127,7 +132,8 @@ function markTaskAsCompleted(
   radioIcon,
   taskContainer,
   taskDescriptionParagraph,
-  actionGroup
+  actionGroup,
+  clickListener
 ) {
   // Create a reference to the next sibling of current the task container to move it to the previous position if the undo option is clicked
   const nextSibling = taskContainer.nextElementSibling;
@@ -137,7 +143,8 @@ function markTaskAsCompleted(
     radioIcon,
     taskContainer,
     taskDescriptionParagraph,
-    actionGroup
+    actionGroup,
+    clickListener
   );
 
   radioIcon.src = "./assets/icons/check.svg";
@@ -158,6 +165,8 @@ function markTaskAsCompleted(
   );
   completedTaskDetails.open = true;
   */
+
+  radioIcon.removeEventListener("click", clickListener);
 }
 
 function removeTask(
@@ -224,7 +233,8 @@ function displayAlertMessage(
   radioIcon,
   taskContainer,
   taskDescriptionParagraph,
-  actionGroup
+  actionGroup,
+  clickListener
 ) {
   // Remove previous alert boxes
   const previousAlerts = document.querySelectorAll(".box-alert");
@@ -250,6 +260,8 @@ function displayAlertMessage(
 
   undoOption.addEventListener("click", () => {
     alertBox.remove();
+
+    // Reset the task to its initial state
     radioIcon.src = "./assets/icons/radio-button-unchecked.svg";
     radioIcon.classList.remove("normal-cursor");
     radioIcon.classList.add("task-container__icon--hover");
@@ -257,7 +269,23 @@ function displayAlertMessage(
       "task-container__task-description--line-through"
     );
     radioIcon.alt = "Radio button unchecked icon";
+
+    // Re-attach the event listeners for hover
+    radioIcon.addEventListener("mouseover", () => {
+      radioIcon.src = "./assets/icons/check.svg";
+    });
+
+    radioIcon.addEventListener("mouseout", () => {
+      radioIcon.src = "./assets/icons/radio-button-unchecked.svg";
+    });
+
+    // Re-attach the event listener for click
+    radioIcon.addEventListener("click", clickListener);
+
+    // Restore the action group
     taskContainer.appendChild(actionGroup);
+
+    // Move the task back to the original position in the TODO list
     todoListSection.insertBefore(taskContainer, nextElementSibling);
   });
 
