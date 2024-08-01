@@ -73,14 +73,14 @@ function displayTask(taskDescription) {
     (radioIcon.src = "./assets/icons/radio-button-unchecked.svg");
 
   const clickListener = () => {
-    radioIcon.removeEventListener("mouseover", addCheckIcon);
-    radioIcon.removeEventListener("mouseout", addRadioIcon);
     markTaskAsCompleted(
       radioIcon,
       taskContainer,
       taskDescriptionParagraph,
       actionGroup,
-      clickListener
+      clickListener,
+      addCheckIcon,
+      addRadioIcon
     );
     taskContainer.removeChild(actionGroup);
   };
@@ -133,7 +133,9 @@ function markTaskAsCompleted(
   taskContainer,
   taskDescriptionParagraph,
   actionGroup,
-  clickListener
+  clickListener,
+  addCheckIcon,
+  addRadioIcon
 ) {
   // Create a reference to the next sibling of current the task container to move it to the previous position if the undo option is clicked
   const nextSibling = taskContainer.nextElementSibling;
@@ -144,7 +146,9 @@ function markTaskAsCompleted(
     taskContainer,
     taskDescriptionParagraph,
     actionGroup,
-    clickListener
+    clickListener,
+    addCheckIcon,
+    addRadioIcon
   );
 
   radioIcon.src = "./assets/icons/check.svg";
@@ -167,6 +171,8 @@ function markTaskAsCompleted(
   */
 
   radioIcon.removeEventListener("click", clickListener);
+  radioIcon.removeEventListener("mouseover", addCheckIcon);
+  radioIcon.removeEventListener("mouseout", addRadioIcon);
 }
 
 function removeTask(
@@ -234,7 +240,9 @@ function displayAlertMessage(
   taskContainer,
   taskDescriptionParagraph,
   actionGroup,
-  clickListener
+  clickListener,
+  addCheckIcon,
+  addRadioIcon
 ) {
   // Remove previous alert boxes
   const previousAlerts = document.querySelectorAll(".box-alert");
@@ -271,13 +279,8 @@ function displayAlertMessage(
     radioIcon.alt = "Radio button unchecked icon";
 
     // Re-attach the event listeners for hover
-    radioIcon.addEventListener("mouseover", () => {
-      radioIcon.src = "./assets/icons/check.svg";
-    });
-
-    radioIcon.addEventListener("mouseout", () => {
-      radioIcon.src = "./assets/icons/radio-button-unchecked.svg";
-    });
+    radioIcon.addEventListener("mouseover", addCheckIcon);
+    radioIcon.addEventListener("mouseout", addRadioIcon);
 
     // Re-attach the event listener for click
     radioIcon.addEventListener("click", clickListener);
