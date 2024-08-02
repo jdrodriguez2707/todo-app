@@ -17,9 +17,12 @@
   --primary-background-color: #f8f9fa;
 }
 
-body {
-  display: flex;
-  justify-content: center;
+.grid-container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-content: center;
+  justify-items: center;
+  min-height: inherit;
 }
 
 .main-container {
@@ -182,4 +185,18 @@ body {
 .box-alert__message--undo {
   font-weight: bold;
   cursor: pointer;
+}
+
+.credits-footer {
+  margin-bottom: 12px;
+  text-align: center;
+  font-size: var(--very-small-font-size);
+  font-family: var(--primary-font-family);
+  font-weight: bold;
+  font-style: normal;
+  color: var(--color-secondary);
+}
+
+.credits-footer__name {
+  color: var(--color-primary);
 }

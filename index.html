@@ -20,40 +20,55 @@
     <title>TODO List</title>
   </head>
   <body>
-    <main class="main-container">
-      <section class="todo-list-section">
-        <h1 class="todo-list-section__title">TODO List</h1>
-        <div class="todo-list-section__add-new-task">
-          <img
-            id="add-task-icon"
-            class="todo-list-section__icon"
-            src="./assets/icons/plus.svg"
-            alt="Plus icon"
-          />
-          <form class="todo-list-section__form">
-            <input
-              id="add-task-input"
-              class="todo-list-section__input"
-              type="text"
-              placeholder="Add a new task"
-              autocomplete="off"
+    <div class="grid-container">
+      <main class="main-container">
+        <section class="todo-list-section">
+          <h1 class="todo-list-section__title">TODO List</h1>
+          <div class="todo-list-section__add-new-task">
+            <img
+              id="add-task-icon"
+              class="todo-list-section__icon"
+              src="./assets/icons/plus.svg"
+              alt="Plus icon"
             />
-          </form>
-        </div>
-        <div id="todo-list-section" class="tasks-container"></div>
-      </section>
-      <section class="completed-tasks-section">
-        <details
-          id="completed-tasks-details"
-          class="completed-tasks-section__details"
-        >
-          <summary class="completed-tasks-section__summary">
-            Completed tasks
-          </summary>
-          <div id="completed-tasks-section" class="tasks-container"></div>
-        </details>
-      </section>
-    </main>
+            <form class="todo-list-section__form">
+              <input
+                id="add-task-input"
+                class="todo-list-section__input"
+                type="text"
+                placeholder="Add a new task"
+                autocomplete="off"
+              />
+            </form>
+          </div>
+          <div id="todo-list-section" class="tasks-container"></div>
+        </section>
+        <section class="completed-tasks-section">
+          <details
+            id="completed-tasks-details"
+            class="completed-tasks-section__details"
+          >
+            <summary class="completed-tasks-section__summary">
+              Completed tasks
+            </summary>
+            <div id="completed-tasks-section" class="tasks-container"></div>
+          </details>
+        </section>
+      </main>
+      <footer class="credits-footer">
+        <p class="credits-footer__text">
+          Made with ❤️ by
+          <a
+            class="credits-footer__name"
+            href="https://github.com/jdrodriguez2707"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Johan Rodriguez
+          </a>
+        </p>
+      </footer>
+    </div>
     <script src="./js/main.js"></script>
   </body>
 </html>
